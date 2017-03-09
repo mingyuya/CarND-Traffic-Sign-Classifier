@@ -41,7 +41,7 @@ The following is the number of training examples after step1.
 
 ####Step 2) Grayscale
 
-There are images with same sign and different chroma. Therefore I decide to remove colors from the examples to make the model concentrate to a shape of sign. Grayscaled images were made by taking an average of RGB channels. (See the cell : Converting to Grayscale)
+There are images with same sign and different chroma - Some images are bluish and some other image are reddish, although those belong to a same class. Therefore I thought that the RGB value may not be useful data and decided to remove colors from the examples to make the model concentrate to a shape of sign. Grayscaled images were made by taking an average of RGB channels. (See the cell : Converting to Grayscale)
 
 Here is an example of a traffic sign image before and after grayscaling.
 
@@ -92,12 +92,12 @@ The training was processed through 4 cells below the title of "Train, Validate a
 ####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
 ####My final model results were:
-* Validation set accuracy of **94.7%**
-* Test set accuracy of **99.99%** 
+* Validation set accuracy of **~93.0%**
+* Test set accuracy of **100.0%** 
 
 To find the solution,
 
-I started from the well known architecture - LeNet - as I mentioned above. But, I thought that I need more and deeper convolutional layer to perceive more complex feature compared to MNIST dataset. Therefore I add one more convolutional layer and increased the depth of filter. As a result, I got huge amount of parameters at fully connected layers. That is the reason why I had to place some dropout layers after the activations to prevent overfitting. However, that was not enough to get the accuracy higher than 90%. I found that the value of 0.05 that is smaller than initial value (=0.1) showed improvement.
+I started from the well known architecture - LeNet - as I mentioned above. But, I thought that I need more and deeper convolutional layer to perceive more complex feature compared to MNIST dataset. Therefore I add one more convolutional layer and increased the depth of filter. As a result, I got huge amount of parameters at fully connected layers. That is the reason why I had to place some dropout layers after the activations to prevent overfitting. However, that was not enough to get the accuracy higher than 90%. I found that the value of 0.04 that is smaller than initial value (=0.1) showed improvement.
  
 ###Test a Model on New Images
 
@@ -106,7 +106,7 @@ Here are five German traffic signs that I found on the web:
 ![alt text][image4] ![alt text][image5] ![alt text][image6] 
 ![alt text][image7] ![alt text][image8]
 
-The first and the last images might be difficult to classify. Because the first image is belongs to one of the classes having lack of example. On the other hand, the last image has some darkness and uncovered part on the sign by snow.
+The first and the last images might be difficult to classify. Because the first image is belongs to one of the classes having lack of example and has distortion by being taken at lower position. On the other hand, the last image has some darkness and uncovered part on the sign by snow.
 
 On the contrary to the expectation above, the model predicted the classes of the new images exactly - It means that the accuracy is 100%. It is shown in the cells below the title of "Predict the Sign Type of Each Image".
 
@@ -114,10 +114,10 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Road work      		| Road work   									| 
+| Road work      		| Road work    									| 
 | General caution     			| General caution 										|
 | Dangerous curve to the right					| Dangerous curve to the right											|
 | Speed limit, 30 km/h	      		| Speed limit, 30 km/h					 				|
 | Beware of ice/snow			| Beware of ice/snow      							|
 
-But, it is possible to check that there the model is possible to confuse the last image as 'Children crossing' sign. The other images were clearly identified relative to the last image. The result is in the cell below the title of "Output Top 5 Softmax ..."
+But, it is possible to check that there the model is possible to confuse the last image as 'Children crossing' sign. The other images were clearly identified relative to the last image. The result is in the cells below the title of "Output Top 5 Softmax ..."
