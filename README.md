@@ -1,6 +1,6 @@
-#**Write-up for Traffic Sign Recognition** 
+# **Write-up for Traffic Sign Recognition** 
 
-##Name : Matt Kim
+## Name : Matt Kim
 
 [//]: # (Image References)
 
@@ -13,7 +13,7 @@
 [image7]: ./new_images/4_big.jpg "Traffic Sign 4"
 [image8]: ./new_images/5_big.jpg "Traffic Sign 5"
 
-##Data Set Summary & Exploration
+## Data Set Summary & Exploration
 
 By using one attribute(.shape) and one numpy function(np.unique), it was possible to find the following values. (In the 2nd cell)
 
@@ -28,10 +28,10 @@ The following is the visualization of the number of training examples which is c
 
 (In addition, I plotted the part of the training examples in jupyter notebook.)
 
-##Design and Test a Model Architecture
-###Pre-processing
+## Design and Test a Model Architecture
+### Pre-processing
 
-####Step 1) Balancing the number of training examples & Gamma variation
+#### Step 1) Balancing the number of training examples & Gamma variation
 
 At first, I didn't consider to adapt step1 but, the model I trained confused one of the new images with another similar sign. After that, I realized that the model was overfitted to the signs having many examples. Therefore, I duplicate the examples which are belong to the class having small amount of examples and append it to given training set. Gamma variation of the duplicated images is done concurrently to make them an effect by using **exposure from skimage**.
 
@@ -39,7 +39,7 @@ The following is the number of training examples after step1.
 
 ![alt text][image2]
 
-####Step 2) Grayscale
+#### Step 2) Grayscale
 
 There are images with same sign and different chroma - Some images are bluish and some other image are reddish, although those belong to a same class. Therefore I thought that the RGB value may not be useful data and decided to remove colors from the examples to make the model concentrate to a shape of sign. Grayscaled images were made by taking an average of RGB channels. (See the cell : Converting to Grayscale)
 
@@ -47,15 +47,15 @@ Here is an example of a traffic sign image before and after grayscaling.
 
 ![alt text][image3]
 
-####Step 3) Shuffle
+#### Step 3) Shuffle
 
 I shuffled the training set to make the examples are randomly selected at every epoch.
 
 
 
-###Model Architecture
+### Model Architecture
 
-####Layers of my model
+#### Layers of my model
 
 The code for my final model - LeNet_mofified - is located in the cell below the title of "Model Architecture".
 
@@ -89,9 +89,9 @@ My final model consisted of the following layers:
 
 The training was processed through 4 cells below the title of "Train, Validate and Test the Model". The accuracy of the model was estimated in the cell right after those cells.
 
-####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
-####My final model results were:
+#### My final model results were:
 * Validation set accuracy of **~93.0%**
 * Test set accuracy of **100.0%** 
 
